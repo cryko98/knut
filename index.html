@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$KNUT Memecoin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Boogaloo&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #42a5f5; /* Updated to a vibrant blue */
+            --secondary-color: #ffffff;
+            --background-color: #f0f2f5;
+            --text-color: #4a4a4a;
+            --card-bg-color: #fff;
+        }
+
+        /*
+        * Updated the body background to be a blue gradient with an animation.
+        */
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb, #90caf9);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-left a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .header-left a:hover {
+            transform: scale(1.05);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .token-box {
+            background-color: var(--secondary-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            user-select: none;
+            transition: transform 0.2s ease-in-out;
+            color: var(--text-color);
+        }
+
+        .token-box:hover {
+            transform: translateY(-2px);
+        }
+
+        .token-box span {
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .copy-message {
+            position: absolute;
+            top: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .x-logo {
+            margin-left: 10px;
+            width: 30px;
+            height: 30px;
+            filter: brightness(0) invert(1);
+        }
+
+        /* Hero section */
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            /* Updated the hero background to use a different blue gradient */
+            background: linear-gradient(135deg, #2196f3, #42a5f5, #1976d2);
+            animation: backgroundShift 10s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes backgroundShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .knut-title {
+            font-family: 'Boogaloo', cursive;
+            font-size: 100px;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2);
+            animation: bounceIn 1s ease-out;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.1); opacity: 0; }
+            60% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        .logo-container {
+            width: 250px;
+            height: 250px;
+            margin: 20px auto;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            animation: rotateLogo 10s linear infinite;
+        }
+
+        @keyframes rotateLogo {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Section styles */
+        .section {
+            padding: 50px 20px;
+            max-width: 960px;
+            margin: auto;
+            text-align: center;
+            background-color: var(--card-bg-color);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            border-radius: 15px;
+            margin-top: 30px;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .section:nth-of-type(2) { animation-delay: 0.3s; }
+        .section:nth-of-type(3) { animation-delay: 0.6s; }
+        .section:nth-of-type(4) { animation-delay: 0.9s; }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h2 {
+            font-family: 'Boogaloo', cursive;
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        /* Description section */
+        .description-text {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #555;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        /* Drawing section */
+        .drawing-tools {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .color-picker {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #ccc;
+            transition: transform 0.2s ease;
+        }
+
+        .color-picker:hover {
+            transform: scale(1.1);
+        }
+
+        .tool-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            font-family: 'Fredoka', sans-serif;
+            border: none;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .tool-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        #drawing-container {
+            position: relative;
+            display: inline-block;
+            max-width: 100%;
+        }
+
+        #drawing-image {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        #drawing-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: crosshair;
+        }
+
+        #download-btn {
+            margin-top: 20px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            font-weight: bold;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        #download-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        /* Meme gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            width: 100%;
+            padding-bottom: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .knut-title {
+                font-size: 60px;
+            }
+
+            .header-left {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <a href="#hero">Home</a>
+            <a href="#about">About</a>
+            <a href="#draw">Draw</a>
+            <a href="#gallery">Memes</a>
+        </div>
+        <div class="header-right">
+            <div class="token-box" onclick="copyTokenAddress(this)">
+                <span>ca: <span id="token-address">xxxxxxxxxxxxxxxxxxxxxxxxxxxx</span></span>
+                <div class="copy-message">Copied!</div>
+            </div>
+            <a href="https://x.com" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/X_logo_2023.svg/1200px-X_logo_2023.svg.png" alt="X.com logo" class="x-logo">
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <h1 class="knut-title">$KNUT</h1>
+            <div class="logo-container">
+                <img id="logo-image" src="knutlog.png" alt="KNUT Logo">
+            </div>
+        </section>
+        
+        <section id="about" class="section">
+            <h2>Who is Knut?</h2>
+            <p class="description-text">Knut is a chill, fun-loving guy. Legend has it his father was a mighty polar bear who fell in love with a cute koala, and the fruit of their love was Knut. 🐨🐻‍❄️ The cool little koala-polar bear hybrid just enjoys life, hangs out with his friends, and is the best at climbing trees. He always has a kind word and his laugh is contagious. Come, and join Knut's cool crew!</p>
+        </section>
+
+        <section id="draw" class="section">
+            <h2>Draw on Knut!</h2>
+            <p>Add lines, accessories, and make Knut your own! 🧢🕶️💎</p>
+            <div class="drawing-tools">
+                <input type="color" id="color-picker" class="color-picker" value="#3498db">
+                <input type="range" id="brush-size" min="1" max="20" value="5">
+                <button id="clear-btn" class="tool-button">Clear</button>
+            </div>
+            <div id="drawing-container">
+                <img id="drawing-image" src="https://via.placeholder.com/600x400?text=KNUT+character+here" alt="KNUT character">
+                <canvas id="drawing-canvas"></canvas>
+            </div>
+            <button id="download-btn">Download Image</button>
+        </section>
+        
+        <section id="gallery" class="section">
+            <h2>Knut Memes</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="https://via.placeholder.com/400?text=Meme+1" alt="Meme 1"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400?text=Meme+2" alt="Meme 2"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400?text=Meme+3" alt="Meme 3"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400?text=Meme+4" alt="Meme 4"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400?text=Meme+5" alt="Meme 5"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400?text=Meme+6" alt="Meme 6"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400?text=Meme+7" alt="Meme 7"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400?text=Meme+8" alt="Meme 8"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400?text=Meme+9" alt="Meme 9"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        2025 $KNUT all rights reserved.
+    </footer>
+
+    <script>
+        // Token address copy function
+        function copyTokenAddress(element) {
+            const tokenAddress = document.getElementById('token-address').innerText;
+            // Use execCommand for broader browser support in iframes
+            if (document.execCommand('copy')) {
+                const message = element.querySelector('.copy-message');
+                message.style.opacity = '1';
+                setTimeout(() => {
+                    message.style.opacity = '0';
+                }, 1500);
+            } else {
+                console.error('Failed to copy text using execCommand.');
+            }
+        }
+        
+        // Drawing canvas functionality
+        const canvas = document.getElementById('drawing-canvas');
+        const ctx = canvas.getContext('2d');
+        const image = document.getElementById('drawing-image');
+        const colorPicker = document.getElementById('color-picker');
+        const brushSize = document.getElementById('brush-size');
+        const clearBtn = document.getElementById('clear-btn');
+        const downloadBtn = document.getElementById('download-btn');
+
+        let isDrawing = false;
+
+        // Resize canvas to match the image size
+        image.onload = () => {
+            canvas.width = image.width;
+            canvas.height = image.height;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            // Draw initial image on canvas. The user can then draw on it.
+            // ctx.drawImage(image, 0, 0); // No need to draw the placeholder image here, we'll draw on the temporary canvas on download
+        };
+
+        // If image is already loaded (from cache), call onload manually
+        if (image.complete) {
+            image.onload();
+        }
+
+        // Mouse and touch event listeners
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+        canvas.addEventListener('mousemove', draw);
+
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent('mousedown', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+        });
+
+        canvas.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            const mouseEvent = new MouseEvent('mouseup', {});
+            canvas.dispatchEvent(mouseEvent);
+        });
+
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent('mousemove', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+        });
+
+        function getCanvasCoordinates(event) {
+            const rect = canvas.getBoundingClientRect();
+            let x, y;
+            if (event.touches) {
+                x = event.touches[0].clientX - rect.left;
+                y = event.touches[0].clientY - rect.top;
+            } else {
+                x = event.clientX - rect.left;
+                y = event.clientY - rect.top;
+            }
+            // Scale coordinates to match the image's natural size
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            return { x: x * scaleX, y: y * scaleY };
+        }
+
+        function startDrawing(e) {
+            isDrawing = true;
+            const { x, y } = getCanvasCoordinates(e);
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            const { x, y } = getCanvasCoordinates(e);
+            ctx.lineTo(x, y);
+            ctx.lineWidth = brushSize.value;
+            ctx.strokeStyle = colorPicker.value;
+            ctx.stroke();
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        clearBtn.addEventListener('click', () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+
+        downloadBtn.addEventListener('click', () => {
+            const tempCanvas = document.createElement('canvas');
+            const tempCtx = tempCanvas.getContext('2d');
+            tempCanvas.width = image.naturalWidth;
+            tempCanvas.height = image.naturalHeight;
+
+            // Draw base image first
+            tempCtx.drawImage(image, 0, 0, tempCanvas.width, tempCanvas.height);
+            // Then draw the user's drawing on top
+            tempCtx.drawImage(canvas, 0, 0, tempCanvas.width, tempCanvas.height);
+
+            const link = document.createElement('a');
+            link.download = 'knut_art.png';
+            link.href = tempCanvas.toDataURL('image/png');
+            link.click();
+        });
+    </script>
+</body>
+</html>
